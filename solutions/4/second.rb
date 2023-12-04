@@ -21,10 +21,8 @@ module Day4
       end
 
       scores.each do |key, value|
-        value[:count].times do
-          ((key + 1)..key + value[:score]).each do |idx|
-            scores[idx][:count] = scores[idx][:count] + 1
-          end
+        ((key + 1)..key + value[:score]).each do |idx|
+          scores[idx][:count] = scores[idx][:count] + value[:count]
         end
       end
 

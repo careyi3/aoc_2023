@@ -3,31 +3,24 @@
 module Day6
   module Part2
     def self.run(path, _)
-      times = []
-      distances = []
-      games = []
+      time = 0
+      distance = 0
 
       FileReader.for_each_line(path) do |line|
         quantity, values = line.split(':')
         if quantity == 'Time'
-          times << values.split.join.to_i
+          time = values.split.join.to_i
         else
-          distances << values.split.join.to_i
+          distance = values.split.join.to_i
         end
       end
 
-      times.each_with_index do |time, idx|
-        games[idx] = { time:, distance: distances[idx], possible_wins: 0 }
-      end
+      b = time
+      c = distance
+      r1 = ((-1 * b) + Math.sqrt((b**2) - (4 * c))) / 2
+      r2 = ((-1 * b) - Math.sqrt((b**2) - (4 * c))) / 2
 
-      games.each do |game|
-        (1..(game[:time] - 1)).each do |t|
-          d = (game[:time] - t) * t
-          game[:possible_wins] += 1 if d > game[:distance]
-        end
-      end
-
-      puts games.map { |x| x[:possible_wins] }.inject(:*)
+      puts r1.to_i - r2.to_i
     end
   end
 end

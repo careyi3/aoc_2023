@@ -16,7 +16,7 @@ module Day2
         end
         powers[game_id] = values.values.inject(:*)
       end
-      puts powers.values.sum
+      powers.values.sum
     end
   end
 end

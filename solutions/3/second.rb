@@ -67,7 +67,7 @@ module Day3
 
       gear_pairs = part_numbers.values.select { |x| x.count == 2 }
 
-      puts gear_pairs.map { |x| x.inject(:*) }.sum
+      gear_pairs.map { |x| x.inject(:*) }.sum
     end
   end
 end

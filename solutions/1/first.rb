@@ -11,7 +11,7 @@ module Day1
         end
         nums << (line_nums.first + line_nums.last).to_i
       end
-      puts nums.sum
+      nums.sum
     end
   end
 end

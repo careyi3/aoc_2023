@@ -7,7 +7,7 @@ module Day9
       FileReader.for_each_line(path) do |line|
         values << difference(line.split.map(&:to_i).reverse)
       end
-      puts values.sum
+      values.sum
     end
 
     def self.difference(input)

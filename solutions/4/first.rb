@@ -25,7 +25,7 @@ module Day4
           end
       end
 
-      puts scores.values.sum
+      scores.values.sum
     end
   end
 end

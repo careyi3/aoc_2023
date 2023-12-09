@@ -95,7 +95,7 @@ module Day5
         end
         seed_ranges = new_seed_ranges
       end
-      puts seed_ranges.flatten.min
+      seed_ranges.flatten.min
     end
   end
 end

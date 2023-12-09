@@ -35,7 +35,7 @@ module Day8
         end
         steps << step
       end
-      puts steps.reduce(1, :lcm)
+      steps.reduce(1, :lcm)
     end
   end
 end

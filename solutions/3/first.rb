@@ -59,7 +59,7 @@ module Day3
         end
         part_numbers << num.join.to_i
       end
-      puts part_numbers.sum
+      part_numbers.sum
     end
   end
 end

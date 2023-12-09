@@ -33,7 +33,7 @@ module Day2
           impossible_games << game_id
         end
       end
-      puts possible_games.sum
+      possible_games.sum
     end
   end
 end

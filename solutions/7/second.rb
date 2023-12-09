@@ -78,7 +78,7 @@ module Day7
         score += bid * (idx + 1)
       end
 
-      puts score
+      score
     end
   end
 end

@@ -27,7 +27,7 @@ module Day6
         end
       end
 
-      puts games.map { |x| x[:possible_wins] }.inject(:*)
+      games.map { |x| x[:possible_wins] }.inject(:*)
     end
   end
 end

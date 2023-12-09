@@ -26,7 +26,7 @@ module Day4
         end
       end
 
-      puts scores.values.map { |x| x[:count] }.sum
+      scores.values.map { |x| x[:count] }.sum
     end
   end
 end

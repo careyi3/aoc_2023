@@ -28,9 +28,9 @@ module Day1
         word_nums = line.scan(Regexp.new("(?=(#{map.keys.join('|')}))")).flatten
         num = (map[word_nums.first].to_s + map[word_nums.last].to_s).to_i
         nums << num
-        # puts "#{word_nums.join(',')} = #{num}"
+        # "#{word_nums.join(',')} = #{num}"
       end
-      puts nums.sum
+      nums.sum
     end
   end
 end

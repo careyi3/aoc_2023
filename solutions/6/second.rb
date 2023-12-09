@@ -20,7 +20,7 @@ module Day6
       r1 = ((-1 * b) + Math.sqrt((b**2) - (4 * c))) / 2
       r2 = ((-1 * b) - Math.sqrt((b**2) - (4 * c))) / 2
 
-      puts r1.to_i - r2.to_i
+      r1.to_i - r2.to_i
     end
   end
 end

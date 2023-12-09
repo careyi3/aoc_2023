@@ -30,7 +30,7 @@ module Day8
           end
         step += 1
       end
-      puts step
+      step
     end
   end
 end

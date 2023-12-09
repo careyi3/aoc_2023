@@ -38,7 +38,7 @@ module Day5
         end
       end
 
-      puts seeds.min
+      seeds.min
     end
   end
 end

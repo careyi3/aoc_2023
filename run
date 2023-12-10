@@ -1,4 +1,4 @@
 #! /bin/bash
 
 bundle check || bundle install
-bundle exec ruby app.rb $1 $2 $3
+RUBY_THREAD_VM_STACK_SIZE=5000000 bundle exec ruby app.rb $1 $2 $3

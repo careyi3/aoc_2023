@@ -39,6 +39,7 @@ DEPENDENCIES
   benchmark (~> 0.2.0)!
   bundler (~> 2.3.26)!
   colorize (~> 0.8.1)!
+  parallel!
   pry (~> 0.14.1)!
   require_all (~> 3.0.0)!
   rubocop (~> 1.38.0)!

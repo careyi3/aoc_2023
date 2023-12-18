@@ -32,7 +32,7 @@ module Day18
       FileReader.for_each_line(path) do |line|
         dir, dist, = line.gsub('(', '').gsub(')', '').split
         dist.to_i.times do
-          if !corner_lookup["#{last_dir}#{dir}"].nil?
+          unless corner_lookup["#{last_dir}#{dir}"].nil?
             grid[y + (input == 'sample' ? 0 : 78)][x] = corner_lookup["#{last_dir}#{dir}"] if vis
             map["#{x}:#{y}"] = corner_lookup["#{last_dir}#{dir}"]
           end

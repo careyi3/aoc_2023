@@ -3,7 +3,7 @@
 module Day18
   module Part1
     def self.run(path, input)
-      vis = true
+      vis = false
       x = 0
       y = 0
       x_max = 0

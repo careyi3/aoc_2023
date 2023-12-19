@@ -30,7 +30,7 @@ module Day17
       return if map[coord].nil?
 
       key = "#{x}:#{y}:#{dir}:#{dir_steps}"
-      return if dist > 1100
+      return if dist > 1500
       return unless visited[key].nil? || dist < visited[key]
 
       visited[key] = dist

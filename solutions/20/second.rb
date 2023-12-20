@@ -78,7 +78,9 @@ module Day20
       end
 
       pulses = []
-      1000.times do
+      nums = {}
+      count = 0
+      4060.times do |i|
         pulses << [false, 'button']
         loop = true
         while loop
@@ -94,9 +96,15 @@ module Day20
           loop = !map.values.map { |x| x.nil? ? 0 : x[:queue].count }.sum.zero?
         end
         map['broadcaster'][:queue] << false
+        count += 1
+        tally = pulses.tally
+        nums['gp'] = count if !tally[[true, 'gp']].nil? && nums['gp'].nil?
+        nums['xp'] = count if !tally[[true, 'xp']].nil? && nums['xp'].nil?
+        nums['ln'] = count if !tally[[true, 'ln']].nil? && nums['ln'].nil?
+        nums['xl'] = count if !tally[[true, 'xl']].nil? && nums['xl'].nil?
+        puts i
       end
-      tally = pulses.map(&:first).tally
-      tally[true] * tally[false]
+      nums.values.reduce(:lcm)
     end
   end
 end

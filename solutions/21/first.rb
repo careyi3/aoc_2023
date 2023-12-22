@@ -19,14 +19,13 @@ module Day21
       step_depths = {}
       depth_stop = input == 'sample' ? 6 : 64
       cache = {}
-      step(map, start_x, start_y, 0, step_depths, depth_stop, cache)
-      step_depths[depth_stop - 1].uniq.count
+      step(map, start_x, start_y, 1, step_depths, depth_stop, cache)
+      step_depths[depth_stop].uniq.count
     end
 
     def self.step(map, x, y, count, step_depths, depth_stop, cache)
       cache_key = "#{x}:#{y}:#{count}"
       return if cache[cache_key]
-      return if count == depth_stop
 
       steps = []
       [[x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]].each_with_index do |(x, y), id|
@@ -42,8 +41,9 @@ module Day21
           end
         end
       end
-
       cache[cache_key] = 1
+
+      return if count == depth_stop
 
       step(map, steps[0][1][0], steps[0][1][1], count + 1, step_depths, depth_stop, cache) if steps[0][0]
       step(map, steps[1][1][0], steps[1][1][1], count + 1, step_depths, depth_stop, cache) if steps[1][0]

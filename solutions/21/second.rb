@@ -22,23 +22,23 @@ module Day21
 
       cache = {}
       step_depths = {}
-      step(map, x_max, y_max, start_x, start_y, 0, step_depths, 101, cache)
-      (1..100).each do |i|
-        puts step_depths[i].uniq.count
+      depth = 350
+      step(map, x_max, y_max, start_x, start_y, 1, step_depths, depth, cache, input)
+      (1..depth).each do |i|
+        puts "#{i} - #{step_depths[i].uniq.count}"
       end
       0
     end
 
-    def self.step(map, x_max, y_max, x, y, count, step_depths, depth_stop, cache)
+    def self.step(map, x_max, y_max, x, y, count, step_depths, depth_stop, cache, input)
       cache_key = "#{x}:#{y}:#{count}"
       return if cache[cache_key]
-      return if count == depth_stop
 
       steps = []
       [[x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]].each_with_index do |(x, y), id|
         step_coord = [x, y]
-        key_x = mod_translate(x, x_max)
-        key_y = mod_translate(y, y_max)
+        key_x = mod_translate(x, x_max, input)
+        key_y = mod_translate(y, y_max, input)
         key = [key_x, key_y].join(':')
         step_valid = map[key] == '.' || map[key] == 'S'
         steps[id] = [step_valid, step_coord]
@@ -52,16 +52,18 @@ module Day21
       end
 
       cache[cache_key] = 1
+      return if count == depth_stop
 
-      step(map, x_max, y_max, steps[0][1][0], steps[0][1][1], count + 1, step_depths, depth_stop, cache) if steps[0][0]
-      step(map, x_max, y_max, steps[1][1][0], steps[1][1][1], count + 1, step_depths, depth_stop, cache) if steps[1][0]
-      step(map, x_max, y_max, steps[2][1][0], steps[2][1][1], count + 1, step_depths, depth_stop, cache) if steps[2][0]
-      step(map, x_max, y_max, steps[3][1][0], steps[3][1][1], count + 1, step_depths, depth_stop, cache) if steps[3][0]
+      step(map, x_max, y_max, steps[0][1][0], steps[0][1][1], count + 1, step_depths, depth_stop, cache, input) if steps[0][0]
+      step(map, x_max, y_max, steps[1][1][0], steps[1][1][1], count + 1, step_depths, depth_stop, cache, input) if steps[1][0]
+      step(map, x_max, y_max, steps[2][1][0], steps[2][1][1], count + 1, step_depths, depth_stop, cache, input) if steps[2][0]
+      step(map, x_max, y_max, steps[3][1][0], steps[3][1][1], count + 1, step_depths, depth_stop, cache, input) if steps[3][0]
     end
 
-    def self.mod_translate(val, val_max)
-      positive_order = (0..130).to_a
-      negative_order = [0] + 130.downto(1).map { |x| x }
+    def self.mod_translate(val, val_max, input)
+      range_max = input == 'sample' ? 10 : 130
+      positive_order = (0..range_max).to_a
+      negative_order = [0] + range_max.downto(1).map { |x| x }
 
       id = val.abs % (val_max + 1)
 

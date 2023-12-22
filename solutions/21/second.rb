@@ -27,7 +27,17 @@ module Day21
       (1..depth).each do |i|
         puts "#{i} - #{step_depths[i].uniq.count}"
       end
-      0
+
+      one = step_depths[65].uniq.count # 65  - 3744
+      two = step_depths[196].uniq.count # 196 - 33417
+      three = step_depths[327].uniq.count # 327 - 92680
+
+      a = (three - (2 * two) + one) / 2
+      b = two - one - a
+      c = one
+      n = (26_501_365 - 65) / 131
+
+      (a * (n**2)) + (b * n) + c
     end
 
     def self.step(map, x_max, y_max, x, y, count, step_depths, depth_stop, cache, input)

@@ -15,15 +15,22 @@ module Day23
         end
       end
       visited = {}
-      walk(map, finish, start, visited, 0)
+      max = { finish => 0 }
+      walk(map, finish, start, visited, 0, max)
     end
 
-    def self.walk(map, finish, next_coord, visited, steps)
+    def self.walk(map, finish, next_coord, visited, steps, max)
       x, y = next_coord.split(':').map(&:to_i)
 
       visited[next_coord] = true
 
-      return steps if next_coord == finish
+      if next_coord == finish
+        if steps > max[finish]
+          max[finish] = steps
+          puts steps
+        end
+        return steps
+      end
 
       to_visit = []
       [[x - 1, y], [x, y - 1], [x + 1, y], [x, y + 1]].each_with_index do |(xx, yy), slop_dir|
@@ -35,10 +42,10 @@ module Day23
       end
 
       lengths = []
-      lengths << walk(map, finish, to_visit[0][0], visited.clone, steps + 1) if to_visit[0][1]
-      lengths << walk(map, finish, to_visit[1][0], visited.clone, steps + 1) if to_visit[1][1]
-      lengths << walk(map, finish, to_visit[2][0], visited.clone, steps + 1) if to_visit[2][1]
-      lengths << walk(map, finish, to_visit[3][0], visited.clone, steps + 1) if to_visit[3][1]
+      lengths << walk(map, finish, to_visit[0][0], visited.clone, steps + 1, max) if to_visit[0][1]
+      lengths << walk(map, finish, to_visit[1][0], visited.clone, steps + 1, max) if to_visit[1][1]
+      lengths << walk(map, finish, to_visit[2][0], visited.clone, steps + 1, max) if to_visit[2][1]
+      lengths << walk(map, finish, to_visit[3][0], visited.clone, steps + 1, max) if to_visit[3][1]
 
       lengths.max || 0
     end
